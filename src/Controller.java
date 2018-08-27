@@ -41,6 +41,22 @@ class Controller implements MouseListener, KeyListener
             case KeyEvent.VK_UP: keyUp = true; break;
             case KeyEvent.VK_DOWN: keyDown = true; break;
         }
+
+
+        char input = e.getKeyChar();
+        if(input == 's')
+        {
+            model.marshal().save("maps.json");
+            System.out.println("You saved the map");
+
+        }
+        else if(input == 'l')
+        {
+            Json j = Json.load("maps.json"); //
+            model.unMarshal(j);
+            System.out.println("You loaded the map");
+        }
+
     }
 
     public void keyReleased(KeyEvent e)

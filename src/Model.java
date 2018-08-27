@@ -29,4 +29,27 @@ class Model
 //        this.brick_y = dest_y;
     }
 
+    //Marshall Method
+    Json marshal()
+    {
+        Json ob = Json.newObject();
+        Json brickList = Json.newList();
+        ob.add("bricks", brickList);
+        for(int i = 0; i < bricks.size(); i++)
+            brickList.add(bricks.get(i).marshal());
+        return ob;
+    }
+
+    //Unmarshal method
+    void unMarshal (Json ob)
+    {
+        ArrayList<Brick> newList = new ArrayList<Brick>();
+        Json jsonList = ob.get("bricks");
+        for (int i = 0; i < jsonList.size(); i++)
+            newList.add(new Brick(jsonList.get(i)));
+        bricks = newList;
+    }
+
+
+
 }
