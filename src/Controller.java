@@ -138,7 +138,7 @@ class Controller implements MouseListener, KeyListener
             }
         }
 
-        model.addTube(xFinal, yFinal,w,h); //Adds the tube to the array
+        model.addTube(xFinal+model.hCamPos, yFinal,w,h); //Adds the tube to the array
     }
 
     public void mouseEntered(MouseEvent e)
