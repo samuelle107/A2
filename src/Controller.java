@@ -40,23 +40,20 @@ class Controller implements MouseListener, KeyListener
             break;
             case KeyEvent.VK_UP: keyUp = true; break;
             case KeyEvent.VK_DOWN: keyDown = true; break;
+            case KeyEvent.VK_L: //When the user presses L, unmarshal the JSON
+            {
+                Json j = Json.load("maps.json"); //
+                model.unMarshal(j);
+                System.out.println("You loaded the map");
+            }
+            break;
+            case KeyEvent.VK_S: //When the user presses S, marshal the JSON
+            {
+                model.marshal().save("maps.json");
+                System.out.println("You saved the map");
+            }
+            break;
         }
-
-
-        char input = e.getKeyChar();
-        if(input == 's')
-        {
-            model.marshal().save("maps.json");
-            System.out.println("You saved the map");
-
-        }
-        else if(input == 'l')
-        {
-            Json j = Json.load("maps.json"); //
-            model.unMarshal(j);
-            System.out.println("You loaded the map");
-        }
-
     }
 
     public void keyReleased(KeyEvent e)
@@ -100,15 +97,9 @@ class Controller implements MouseListener, KeyListener
         postXLocation = e.getX();
         postYLocation = e.getY();
 
-        //Calculating width and height
-        w = postXLocation - preXLocation;
-        h = postYLocation - preYLocation;
-
-        //Adjusting for negative widths
-        if(w < 0)
-           w = -w;
-        if(h < 0)
-            h = -h;
+        //Calculating the absolute width and height
+        w = Math.abs(postXLocation - preXLocation);
+        h = Math.abs(postYLocation - preYLocation);
 
         //Determines the final location of the brick based on the way the box is drawn.  This is because the image is always drawn in the left corner.
         if(postYLocation > preYLocation)
@@ -138,7 +129,7 @@ class Controller implements MouseListener, KeyListener
             }
         }
 
-        model.addTube(xFinal, yFinal,w,h); //Adds the tube to the array
+        model.addTube(xFinal + model.hCamPos, yFinal,w,h); //Adds the tube to the array
     }
 
     public void mouseEntered(MouseEvent e)

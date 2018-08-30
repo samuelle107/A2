@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 class Model
 {
-//    int brick_x;
-//    int brick_y;
     int dest_x;
     int dest_y;
 
@@ -24,9 +22,7 @@ class Model
 
     public void update()
     {
-        //This will move the turtle to the destination of the mouse click.
-//        this.brick_x = dest_x;
-//        this.brick_y = dest_y;
+
     }
 
     //Marshall Method

@@ -269,7 +269,6 @@ public abstract class Json
         try
         {
             contents = new String(Files.readAllBytes(Paths.get(filename)));
-            System.out.println("messa tryna load");
         }
         catch(Exception e)
         {

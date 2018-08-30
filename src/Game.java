@@ -8,6 +8,7 @@ public class Game extends JFrame
     View view;
     Controller controller;
 
+
     public Game()
     {
         model = new Model(); //Making a new Model object.
